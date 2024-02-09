@@ -1,5 +1,63 @@
+<!-- dashboard.component.html -->
 <div class="main-content">
-  <div class="container-fluid">
-     
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Registro de usuarios</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="registrationForm" (ngSubmit)="onSave()">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Nombre" formControlName="name">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tipo de identificación</mat-label>
+                      <mat-select placeholder="Tipo de Identificación" formControlName="idType">
+                        <mat-option *ngFor="let type of identificationTypes" [value]="type">{{ type }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Número Identificación" type="number" formControlName="idNumber">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="dateBirth">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Peso" type="number" formControlName="Weight">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Altura" type="number" formControlName="Height">
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="registrationForm.invalid">Guardar</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  
