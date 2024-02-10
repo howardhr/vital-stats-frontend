@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
+import { catchError } from 'rxjs/operators'; 
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,14 @@ export class DashboardService {
       'Content-Type': 'application/json'
     });
     const options = { headers: headers };
-    return this.http.post(this.apiUrl, userData, options);
+  
+    return this.http.post(this.apiUrl, userData, options)
+      .pipe(
+        catchError(error => {
+          console.error('Error en la solicitud:', error);
+          throw error;
+        })
+      );
   }
+  
 }
